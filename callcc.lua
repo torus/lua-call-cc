@@ -28,9 +28,13 @@ end
 --               (call/cc (lambda (bar) bar)))))
 --   (yin yang))
 
+function write (text)
+   io.stdout:write (text)
+end
+
 function callccpuzzle ()
    local yin = ((function (foo)
-		    io.stdout:write ("\n")
+		    write ("\n")
 		    return foo
 		 end) (
 		   callcc (
@@ -38,7 +42,7 @@ function callccpuzzle ()
 			 bar (bar)
 		      end)))
    local yang = ((function (foo)
-		     io.stdout:write ("*")
+		     write ("*")
 		     return foo
 		  end) (
 		    callcc (
