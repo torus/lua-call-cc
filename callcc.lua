@@ -19,9 +19,9 @@ end
 
 function callccpuzzle ()
    local yin = ((function (foo) write ("\n"); return foo end) (
-		   callcc (function (bar) bar (bar) end)))
+                   callcc (function (bar) bar (bar) end)))
    local yang = ((function (foo) write ("*"); return foo end) (
-		    callcc (function (bar) bar (bar) end)))
+                    callcc (function (bar) bar (bar) end)))
    yin (yang)
 end
 
@@ -39,11 +39,11 @@ end
 function make_cont_func (cont)
    local current_continuation = cont
    return function (x)
-	     pc = coroutine.clone (current_continuation)
-	     continuation = nil
-	     params = x
-	     coroutine.yield ()
-	  end
+             pc = coroutine.clone (current_continuation)
+             continuation = nil
+             params = x
+             coroutine.yield ()
+          end
 end
 
 function base (f)
