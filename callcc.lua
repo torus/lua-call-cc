@@ -33,22 +33,10 @@ function write (text)
 end
 
 function callccpuzzle ()
-   local yin = ((function (foo)
-		    write ("\n")
-		    return foo
-		 end) (
-		   callcc (
-		      function (bar)
-			 bar (bar)
-		      end)))
-   local yang = ((function (foo)
-		     write ("*")
-		     return foo
-		  end) (
-		    callcc (
-		       function (bar)
-			  bar (bar)
-		       end)))
+   local yin = ((function (foo) write ("\n"); return foo end) (
+		   callcc (function (bar) bar (bar) end)))
+   local yang = ((function (foo) write ("*"); return foo end) (
+		    callcc (function (bar) bar (bar) end)))
    yin (yang)
 end
 
