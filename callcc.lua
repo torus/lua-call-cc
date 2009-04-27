@@ -6,22 +6,6 @@ local pc
 local continuation
 local params
 
-function f1 ()
-   print "f1"
-
-   r = callcc (
-      function (ret)
-	 local x = "hogehoe"
-	 print "f2"
-	 ret (x)
-	 print "f2: after cont"
-      end
-   )
-
-   print ("f1: got " .. r)
-   pc = nil
-end
-
 -- (let* ((yin ((lambda (foo) (newline) foo)
 --              (call/cc (lambda (bar) bar))))
 --        (yang ((lambda (foo) (write-char #\*) foo)
@@ -71,4 +55,3 @@ function base (f)
 end
 
 base (callccpuzzle)
--- base (f1)
