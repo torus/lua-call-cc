@@ -16,7 +16,7 @@ end
 local function make_cont_func (cont)
    local current_continuation = cont
    return function (x)
-             pc = coroutine.clone (current_continuation)
+             pc = current_continuation and coroutine.clone (current_continuation)
              continuation = nil
              params = x
              coroutine.yield ()
@@ -27,7 +27,7 @@ function callcc_run (f)
    pc = coroutine.create (f)
    continuation = nil
    params = nil
-   while (pc) do
+   while (pc and coroutine.status (pc) ~= "dead") do
       coroutine.resume (pc, make_cont_func (continuation), params)
    end
 end
