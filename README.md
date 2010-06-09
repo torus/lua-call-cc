@@ -10,9 +10,9 @@ Sample
 
   A simple escape demo.
 
-- callpuzzle.lua
+- callccpuzzle.lua
 
-  Lua version of [call/cc puzzle] (http://groups.google.com/group/comp.lang.scheme/browse_frm/thread/a5479dbeb298639c?dq=&hl=ja&lr=&ie=UTF-8&prev=/groups%3Fhl%3Dja%26group%3Dcomp.lang.scheme).
+  Lua version of [call/cc puzzle] (http://groups.google.com/group/comp.lang.scheme/browse_frm/thread/a5479dbeb298639c).
 
 License
 -------
