@@ -12,7 +12,7 @@ Sample
 
 - callccpuzzle.lua
 
-  Lua version of [call/cc puzzle] (http://groups.google.com/group/comp.lang.scheme/browse_frm/thread/a5479dbeb298639c).
+  Lua version of [call/cc puzzle](http://groups.google.com/group/comp.lang.scheme/browse_frm/thread/a5479dbeb298639c).
 
 License
 -------
