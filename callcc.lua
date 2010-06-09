@@ -1,9 +1,3 @@
--- Lua call/cc sample
-
--- This script tested on Lua 5.1.4 with coroutine.clone patch
--- http://lua-users.org/lists/lua-l/2006-01/msg00652.html
--- License: MIT (same as Lua http://www.lua.org/license.html )
-
 local pc
 local continuation
 local params
@@ -13,18 +7,6 @@ local params
 --        (yang ((lambda (foo) (write-char #\*) foo)
 --               (call/cc (lambda (bar) bar)))))
 --   (yin yang))
-
-function write (text)
-   io.stdout:write (text)
-end
-
-function callccpuzzle ()
-   local yin = ((function (foo) write ("\n"); return foo end) (
-                   callcc (function (bar) bar (bar) end)))
-   local yang = ((function (foo) write ("*"); return foo end) (
-                    callcc (function (bar) bar (bar) end)))
-   yin (yang)
-end
 
 function callcc (func)
    continuation = pc
@@ -37,7 +19,7 @@ function callcc (func)
    return r
 end
 
-function make_cont_func (cont)
+local function make_cont_func (cont)
    local current_continuation = cont
    return function (x)
              pc = coroutine.clone (current_continuation)
@@ -47,7 +29,7 @@ function make_cont_func (cont)
           end
 end
 
-function base (f)
+function callcc_run (f)
    pc = coroutine.create (f)
    continuation = nil
    params = nil
@@ -55,5 +37,3 @@ function base (f)
       coroutine.resume (pc, make_cont_func (continuation), params)
    end
 end
-
-base (callccpuzzle)
